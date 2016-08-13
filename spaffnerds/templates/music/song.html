@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="body-content">
+    <div class="row">
+	    <h3>{{ data.name }}</h3>
+        <p>Debut Date: {{ data.date_first_played|datefilter }} </p>
+	    <p>Date Last played: {{ data.date_last_played|datefilter }} </p>
+        <p>Written by: {{ data.written_by }}
+    </div>
+    <div class="row">
+        <p>Bacon ipsum dolor sit amet beef shoulder frankfurter brisket short loin. Capicola shankle pork belly, turducken chuck doner leberkas short loin. Boudin strip steak pork loin shankle flank spare ribs shoulder. Ball tip leberkas beef shank jerky beef ribs tongue capicola short loin pork belly filet mignon ribeye pork doner.</p>  
+    	<p>{{ data.notes }} </p>
+    </div>
+    <div class="row">
+    	<h4>Shows played</h4>
+		{% for x in data.shows %}
+			<a href='{{ url_for('music.show', date=x.date) }}'>{{ x.date|datefilter }} - {{ x.venue.name }}</a></br>
+		{% endfor %}
+    </div>
+</div>
+{% endblock %}

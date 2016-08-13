@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="body-content">
+  <div class="page-header">
+    <h1>{{ data.name }} 
+      <small>{% if data.loc_city and data.loc_state %} {{ data.loc_city }}, {{ data.loc_state }}{% endif %}</small>
+    </h1>
+  </div>
+    <div class="row">
+      <p>{{ data.notes }}</p>
+      <p>{{ data.email }} </p>
+      <p>{{ data.phone }} </p>
+      <p>{{ data.address }} </p>
+
+    	<h3>Shows played here:</h3>
+		{% for x in data.shows %}
+			<a href='{{ url_for('music.show', date=x.date) }}'><b>{{ x.date | datefilter }}</b> - {{ x.name if x.name }}</a><br>
+		{% endfor %}
+    </div>
+</div>
+{% endblock %}

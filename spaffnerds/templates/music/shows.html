@@ -1,0 +1,15 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="body-content">
+	<div class="page-header">
+		<h1>Shows</h1>
+	</div>
+    <div class="row">
+		{% for x in data %}
+			<a href='{{ url_for('music.show', date=x.date) }}'>{{ x.date|datefilter}} - {{ x.venue.name }}</a></br>
+		{% endfor %}
+    </div>
+</div>
+{% endblock %}

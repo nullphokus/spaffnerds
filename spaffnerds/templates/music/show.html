@@ -1,0 +1,42 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="body-content">
+	<div class="page-header">
+	  <h1><a href='{{ url_for('music.show', date=data.date) }}'>{{ data.date|datefilter }}</a>
+	  <small><a href='{{ url_for('music.venue', name=data.venue.name) }}'>{{ data.venue.name }}</a>{% if data.venue.city and data.venue.state %} {{ data.venue.city }}, {{ data.venue.state }} {% endif %}</small></h1>
+	</div>
+    <div class="row">
+    	{% set cnt = [1] %}
+		{% for show_set, songs in songs_data.iteritems() %}
+			{% if show_set not in 'Encore' %}
+				<h4>{{ 'Set %s' % show_set  }}</h4>
+			{% elif show_set in 'Encore' %}
+				<h4>{{ '%s' % show_set }}</h4>
+			{% endif %}
+			{% for song in songs %}
+				<a href='{{ url_for('music.song', name=song[2]) }}'>{{ song[1] }}</a>
+				{% if song[4] %}
+					<sup>{{ '[%s]' % cnt[0] }}</sup>
+					{% if cnt.append(cnt.pop() + 1) %}{% endif %}
+				{% endif %}
+				{% if song[3] %}
+					>
+				{% else %}
+					{{ ',' if not loop.last }}
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+    </div>
+    {% if notes %}
+	    <div class="row">
+	    	<h4>Notes:</h4>
+	    	{% for note in notes %}
+	    		<ul>{{ '[%s] - %s' % (loop.index, note) }}</ul>
+	    	{% endfor %}
+	    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
