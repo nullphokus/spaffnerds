@@ -2,6 +2,7 @@
 """Database module, including the SQLAlchemy database object and DB-related utilities."""
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from sqlalchemy.ext.declarative import as_declarative
 
 from .compat import basestring
 from .extensions import db
@@ -39,6 +40,7 @@ class CRUDMixin(object):
         return commit and db.session.commit()
 
 
+@as_declarative()
 class Model(CRUDMixin, db.Model):
     """Base model class that includes CRUD convenience methods."""
 

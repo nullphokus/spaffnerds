@@ -7,6 +7,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
+from flask_restless import APIManager
 
 bcrypt = Bcrypt()
 login_manager = LoginManager()
@@ -15,3 +16,5 @@ migrate = Migrate()
 cache = Cache()
 debug_toolbar = DebugToolbarExtension()
 admin = Admin(name='spaffnerds', template_mode='bootstrap3')
+
+api = APIManager(flask_sqlalchemy_db=db)

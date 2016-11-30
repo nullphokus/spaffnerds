@@ -25,17 +25,18 @@ def home():
     """ 
         Home page
     """
-
-    ## upcoming shows
+    # upcoming shows
     current_time = datetime.datetime.utcnow()
     upcoming_shows = Show.query.filter_by(Show.date >= current_time).order_by()
     return render_template('music/home.html')
+
 
 @blueprint.route('/songs/')
 def songs():
     """Register new user."""
     songs = Song.query.all()
     return render_template('music/songs.html', data=songs)
+
 
 @blueprint.route('/songs/<name>')
 def song(name):
@@ -48,6 +49,7 @@ def song(name):
 
     return render_template('music/song.html', data=song)
 
+
 @blueprint.route('/venues/')
 def venues():
 
@@ -59,17 +61,20 @@ def venues():
     # stats = Venue.query(func.min(date))
     return render_template('music/venues.html', data=venues)
 
+
 @blueprint.route('/venues/<name>')
 def venue(name):
     """Register new user."""
     venue = Venue.query.filter_by(name=name).first_or_404()
     return render_template('music/venue.html', data=venue)
 
+
 @blueprint.route('/shows/')
 def shows():
     """Register new user."""
     shows = Show.query.order_by(Show.date.desc()).all()
     return render_template('music/shows.html', data=shows)
+
 
 @blueprint.route('/shows/<date>', methods=['GET', 'POST'])
 def show(date):
