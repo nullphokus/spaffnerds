@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ venue.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h2>{{ venue.name }}</h2>
+    </div>
+  </div>
+
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+  </div>
+
+</div>
+<!-- End Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+      {% if venue.description %}
+        <p>{{ venue.description }}</p>
+      {% endif %}
+  </div>
+
+</div>
+
+</div>
+{% endblock content %}
+

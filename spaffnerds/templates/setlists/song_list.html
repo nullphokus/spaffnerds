@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}Members{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Songs</h2>
+
+  <div class="list-group">
+    {% for song in song_list %}
+      <a href="{% url 'setlists:song-detail' song.slug %}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ song.name }}</h4>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
