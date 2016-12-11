@@ -9,7 +9,7 @@
   <div class="list-group">
     {% for song in song_list %}
       <a href="{% url 'setlists:song-detail' song.slug %}" class="list-group-item">
-        <h4 class="list-group-item-heading">{{ song.name }}</h4>
+        <h4 class="list-group-item-heading">{{ song.title }}</h4>
       </a>
     {% endfor %}
   </div>

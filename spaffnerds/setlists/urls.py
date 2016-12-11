@@ -12,7 +12,7 @@ urlpatterns = [
         name='show-list'
     ),
     url(
-        regex=r'shows/^(?P<date>[\w.@+-]+)',
+        regex=r'shows/(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})/$',
         view=views.ShowDetailView.as_view(),
         name='show-detail'
     ),
@@ -23,7 +23,7 @@ urlpatterns = [
         name='song-list'
     ),
     url(
-        regex=r'songs/^(?P<slug>[\w.@+-]+)',
+        regex=r'songs/(?P<slug>[\w-]+)$',
         view=views.SongDetailView.as_view(),
         name='song-detail'
     ),

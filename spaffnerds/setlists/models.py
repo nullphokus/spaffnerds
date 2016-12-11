@@ -8,8 +8,8 @@ from autoslug import AutoSlugField
 class Song(models.Model):
     title = models.CharField(max_length=200)
     slug = AutoSlugField(populate_from='title')
-    is_cover = models.BooleanField()
-    lyrics = models.TextField()
+    is_cover = models.BooleanField(default=0)
+    lyrics = models.TextField(blank=True)
     # written_by = models.ForeignKey(Artist.name)
 
     def __str__(self):
@@ -46,7 +46,7 @@ class Show(models.Model):
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     date = models.DateField()
     date_order = models.IntegerField(default=1)
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     songs = models.ManyToManyField(Song, through='ShowSongLink')
 
@@ -62,9 +62,9 @@ class ShowSongLink(models.Model):
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
     track_number = models.IntegerField()
-    set = models.IntegerField()  # (1,2,3,E1,E2)
-    notes = models.TextField()
-    is_segued = models.BooleanField()
+    set = models.IntegerField(null=True, blank=True)  # (1,2,3,E1,E2)
+    notes = models.TextField(blank=True)
+    is_segued = models.BooleanField(default=0)
     # guest? link to artists
 
     def __str__(self):
