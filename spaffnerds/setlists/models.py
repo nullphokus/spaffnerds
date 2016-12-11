@@ -60,6 +60,13 @@ class Show(models.Model):
                         'month': self.date.strftime("%m"),
                         'day': self.date.strftime("%d")})
 
+    def get_absolute_show(self):
+        return reverse('setlists:show-detail', kwargs = {
+                        'year': self.date.strftime("%Y"),
+                        'month': self.date.strftime("%m"),
+                        'day': self.date.strftime("%d"),
+                        'slug': self.date_order})
+
 
     class Meta:
         ordering = ('date', 'date_order')

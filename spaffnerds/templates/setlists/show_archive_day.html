@@ -5,33 +5,31 @@
 
 {% block content %}
 <div class="container">
-{% for show in show_list %}
-      <div class="row">
-        <div class="col-sm-12">
-        {{ day }}
-          <h2>{{ show.date }}</h2>
-            <p>{{ show.venue.name }}</p>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>{{ day }}</h1>
+    </div>
+</div>
+
+  <div class="list-group">
+    {% for show in show_list %}
+      <a href="{{ show.get_absolute_show }}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ show.venue.name }}</h4>
+      </a>
+
+        <!-- Action buttons -->
+        <div class="row">
+
+          <div class="col-sm-12">
+          </div>
+
         </div>
-      </div>
+        <!-- End Action buttons -->
+        <div class="row">
+        </div>
+    {% endfor %}
 
-    <!-- Action buttons -->
-    <div class="row">
-
-      <div class="col-sm-12">
-      </div>
-
-    </div>
-    <!-- End Action buttons -->
-    <div class="row">
-
-      <div class="col-sm-12">
-          {% if show.notes %}
-            <p>{{ show.notes }}</p>
-          {% endif %}
-      </div>
-
-    </div>
-{% endfor %}
+  </div>
 
 {# Date navigation controls#}
 <p>

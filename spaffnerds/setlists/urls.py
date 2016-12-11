@@ -17,7 +17,7 @@ urlpatterns = [
         name='show-day'
     ),
     url(
-        regex=r'shows/(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})/$',
+        regex=r'shows/(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})/(?P<slug>[0-9]{1,2})$$',
         view=views.ShowDetailView.as_view(),
         name='show-detail'
     ),

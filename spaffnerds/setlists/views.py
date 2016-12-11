@@ -35,6 +35,7 @@ class ShowDayView(DayArchiveView):
 class ShowDetailView(DateDetailView):
     model = Show
     date_field = 'date'
+    slug_field = 'date_order'
     year_format = '%Y'
     month_format = '%m'
     day_format = '%d'
