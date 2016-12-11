@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from django.views.generic.dates import DayArchiveView, DateDetailView, ArchiveIndexView
+from django.core.urlresolvers import reverse
 
 from braces.views import LoginRequiredMixin
 
 from .models import Show, Song, Venue
 # Create your views here.
 
-class ShowListView(ListView):
+
+class ShowListView(ArchiveIndexView):
     model = Show
+    date_field = "date"
 
     def get_queryset(self):
         queryset = super(ShowListView, self).get_queryset()
@@ -19,9 +23,22 @@ class ShowListView(ListView):
         return queryset
 
 
-class ShowDetailView(DetailView):
+class ShowDayView(DayArchiveView):
     model = Show
+    date_field = 'date'
+    year_format = '%Y'
+    month_format = '%m'
+    day_format = '%d'
 
+
+
+class ShowDetailView(DateDetailView):
+    model = Show
+    date_field = 'date'
+    year_format = '%Y'
+    month_format = '%m'
+    day_format = '%d'
+    template_name = 'setlists/show_detail.html'
 
 class SongListView(ListView):
     model = Song
@@ -38,6 +55,7 @@ class SongListView(ListView):
 
 class SongDetailView(DetailView):
     model = Song
+    slug_field = 'slug'
 
 
 class VenueListView(ListView):

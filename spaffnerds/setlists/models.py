@@ -13,7 +13,7 @@ class Song(models.Model):
     # written_by = models.ForeignKey(Artist.name)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Artist(models.Model):
@@ -53,6 +53,14 @@ class Show(models.Model):
     def __str__(self):
         return str(self.date)
 
+
+    def get_show_day(self):
+        return reverse('setlists:show-day', kwargs = {
+                        'year': self.date.strftime("%Y"),
+                        'month': self.date.strftime("%m"),
+                        'day': self.date.strftime("%d")})
+
+
     class Meta:
         ordering = ('date', 'date_order')
 
@@ -68,7 +76,7 @@ class ShowSongLink(models.Model):
     # guest? link to artists
 
     def __str__(self):
-        return "%s: %s - %s" % (self.show.date, self.track_number, self.song.name)
+        return "%s: %s - %s" % (self.show.date, self.track_number, self.song.title)
 
     class Meta:
         ordering = ('track_number',)
