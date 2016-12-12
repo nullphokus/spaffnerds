@@ -5,14 +5,12 @@
 
 {% block content %}
 <div class="container">
-{% for show in show_list %}
-      <div class="row">
+    <div class="row">
         <div class="col-sm-12">
-        {{ day }}
           <h2>{{ show.date }}</h2>
             <p>{{ show.venue.name }}</p>
         </div>
-      </div>
+    </div>
 
     <!-- Action buttons -->
     <div class="row">
@@ -31,7 +29,6 @@
       </div>
 
     </div>
-{% endfor %}
 
 {# Date navigation controls#}
 <p>

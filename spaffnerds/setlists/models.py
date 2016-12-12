@@ -53,7 +53,6 @@ class Show(models.Model):
     def __str__(self):
         return str(self.date)
 
-
     def get_show_day(self):
         return reverse('setlists:show-day', kwargs = {
                         'year': self.date.strftime("%Y"),
